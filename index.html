@@ -29,9 +29,29 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
-  </head>
+
+    <style>
+      @keyframes pulse-attention {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); /* Subtle white glow */
+        }
+        70% {
+          transform: scale(1.05); /* Slightly bigger */
+          box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); /* Glow expands and fades */
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+        }
+      }
+
+      .audio-button-attention {
+        animation: pulse-attention 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+    </style>
+    </head>
   <body>
-    <!-- partial:index.partial.html -->
     <div class="sakura-falling"></div>
     <img
       src="assets/img/right.png"
@@ -87,30 +107,42 @@
       </div>
     </div>
 
-    <!-- <div class="actions">
-        <a href="https://goo.gl/maps/5z5xX2hTYzU8VGEJ9" target="_blank">
-          <div class="venue">SEE THE VENUE</div>
-        </a>
-        <a href="link" download="Invitation | 23 Nov | Hope to see you there!">
-          <div class="venue">DOWNLOAD INVITATION CARD</div>
-        </a>
-      </div> -->
-    <!-- <p class="footer">
-         <span></span>
-      </p> -->
     <div class="music">
       <audio
         src="assets/audio/barakallah.mp3"
         id="my_audio"
         loop="loop"
+        preload="auto"
       ></audio>
+    </div>
+
+    <div
+      id="audio_control"
+      class="audio-button-attention"
+      style="
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      "
+    >
+      <i id="speaker_icon" class="fa fa-volume-up" style="color: white; font-size: 24px;"></i>
     </div>
     <p class="happiness">
       Can't wait to celebrate this blessed moment of our family with you! <br />
       Just a ping away for any queries: +91 8310428923
     </p>
     <p class="dance-med">Join us in our happiness!</p>
-    <!-- partial -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js"></script>
     <script src="assets/js/script.js"></script>
