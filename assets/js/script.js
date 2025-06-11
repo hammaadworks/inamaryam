@@ -1,69 +1,43 @@
 (function ($) {
-    "use strict";
-      $('.sakura-falling').sakura();
+  "use strict";
+  $(".sakura-falling").sakura();
 })(jQuery);
 
-$(document).on('click', function(){
-    document.getElementById("my_audio").play();
-    console.log('Audio started playing');
+$(document).on("click", function () {
+  document.getElementById("my_audio").play();
+  console.log("Audio started playing");
 });
 
-// Set the date we're counting down to
-var countDownDate = new Date("Jun 19, 2025 18:00:00").getTime();
+const countDownDate = new Date("Jun 19, 2025 18:00:00").getTime();
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+const countdown = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = countDownDate - now;
 
-    // Get todays date and time
-    var now = new Date().getTime();
-    
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-    
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    // Output the result in an element with id="demo"
-    document.getElementById("time").innerHTML = "<div class='container'><div class='days block'>"+ days + "<br>Days</div>" + "<div class='hours block'>" + hours + "<br>Hours</div>" + "<div class='minutes block'>" + minutes + "<br>Minutes</div>" + "<div class='seconds block'>" + seconds + "<br>Seconds</div></div>";
-    
-    // If the count down is over, write some text 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("time").innerHTML = "Make a lot of dua for the beautiful couple!";
-    }
+  if (distance < 0) {
+    clearInterval(countdown);
+    document.getElementById("countdown").innerHTML = `
+    <div class="after-message">
+      <h2 class="headline">✨ It’s Time! ✨</h2>
+      <p class="subtext">Make heartfelt duas for the beautiful couple <strong>Saba Maryam</strong> and <strong>Mohammed Inam Ul Hassan</strong>.</p>
+      <p class="barakah">May Allah bless this union with barakah, love, and endless joy — Ameen ❤️</p>
+    </div>
+  `;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("days").textContent = pad(days);
+  document.getElementById("hours").textContent = pad(hours);
+  document.getElementById("minutes").textContent = pad(minutes);
+  document.getElementById("seconds").textContent = pad(seconds);
 }, 1000);
 
-// being a bit cool :p  
-var styles = [
-    'background: linear-gradient(#D33106, #571402)'
-    , 'border: 4px solid #3E0E02'
-    , 'color: white'
-    , 'display: block'
-    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 0.3)'
-    , 'box-shadow: 0 2px 0 rgba(255, 255, 255, 0.4) inset, 0 5px 3px -5px rgba(0, 0, 0, 0.5), 0 -13px 5px -10px rgba(255, 255, 255, 0.4) inset'
-    , 'line-height: 40px'
-    , 'text-align: center'
-    , 'font-weight: bold'
-    , 'font-size: 32px'
-].join(';');
-
-var styles1 = [
-    'color: #FF6C37'
-    , 'display: block'
-    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 1)'
-    , 'line-height: 40px'
-    , 'font-weight: bold'
-    , 'font-size: 32px'
-].join(';');
-
-var styles2 = [
-    'color: teal'
-    , 'display: block'
-    , 'text-shadow: 0 2px 0 rgba(0, 0, 0, 1)'
-    , 'line-height: 40px'
-    , 'font-weight: bold'
-    , 'font-size: 32px'
-].join(';');
+function pad(num) {
+  return num < 10 ? "0" + num : num;
+}

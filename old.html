@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inam & Maryam - Nikah Invitation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Arvo&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-color: #6a1b9a;
+        --secondary-color: #d81b60;
+        --light-bg: #fef9f4;
+        --accent-color: #b289c1;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--light-bg);
+        font-family: 'Arvo', serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        color: #333;
+      }
+
+      .hero {
+        width: 100%;
+        text-align: center;
+        padding: 3rem 1rem;
+        background: linear-gradient(120deg, #f8e1f4, #fdf5fc);
+      }
+
+      .hero h1 {
+        font-family: 'Great Vibes', cursive;
+        font-size: 4rem;
+        color: var(--primary-color);
+        margin: 0;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+        font-weight: normal;
+        color: var(--secondary-color);
+        margin-top: 1rem;
+      }
+
+      .details {
+        padding: 2rem;
+        background: #fff;
+        border-radius: 20px;
+        margin: 2rem;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        max-width: 700px;
+        text-align: center;
+      }
+
+      .details h3 {
+        color: var(--primary-color);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .details p {
+        margin: 0.5rem 0;
+        font-size: 1.1rem;
+      }
+
+      .countdown-container {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin: 2rem auto;
+        flex-wrap: wrap;
+      }
+
+      .countdown-block {
+        background: #fff;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        min-width: 90px;
+        animation: pulse 2s infinite;
+      }
+
+      .digit {
+        font-size: 2rem;
+        color: var(--primary-color);
+        font-weight: bold;
+      }
+
+      .label {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .venue {
+        background: var(--primary-color);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        margin-top: 1rem;
+      }
+
+      .venue a {
+        color: #fff;
+        text-decoration: underline;
+      }
+
+      .footer {
+        text-align: center;
+        padding: 2rem;
+        font-size: 1rem;
+        color: #777;
+      }
+
+      .footer strong {
+        color: var(--secondary-color);
+      }
+
+      .sakura {
+        pointer-events: none;
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: var(--accent-color);
+        border-radius: 50%;
+        animation: fall 10s linear infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          opacity: 1;
+          transform: translateY(-10%);
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="hero">
+      <h1>Inam & Maryam</h1>
+      <h2>Invite you to their Nikah</h2>
+    </div>
+
+    <div class="countdown-container" id="countdown">
+      <div class="countdown-block">
+        <div class="digit" id="days">--</div>
+        <div class="label">Days</div>
+      </div>
+      <div class="countdown-block">
+        <div class="digit" id="hours">--</div>
+        <div class="label">Hours</div>
+      </div>
+      <div class="countdown-block">
+        <div class="digit" id="minutes">--</div>
+        <div class="label">Minutes</div>
+      </div>
+      <div class="countdown-block">
+        <div class="digit" id="seconds">--</div>
+        <div class="label">Seconds</div>
+      </div>
+    </div>
+
+    <div class="details">
+      <h3>Date & Time</h3>
+      <p><strong>Sunday, 15th June 2025</strong></p>
+      <p>After Dhuhr Salah, In Sha Allah</p>
+      <div class="venue">
+        <p>Masjid-e-Farooqi, City Name</p>
+        <a href="#">View on Google Maps</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      With love,<br />
+      <strong>Mohammed Nadeem & Family</strong><br />
+      <strong>Mohammed Inam Ul Hassan & Family</strong>
+    </div>
+
+    <script>
+      const countDownDate = new Date("June 15, 2025 13:00:00").getTime();
+      const x = setInterval(function () {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor(
+          (distance % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").innerText = days;
+        document.getElementById("hours").innerText = hours;
+        document.getElementById("minutes").innerText = minutes;
+        document.getElementById("seconds").innerText = seconds;
+
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("countdown").innerHTML =
+            '<div class="end-msg">The Nikah has begun!</div>';
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
