@@ -518,35 +518,33 @@ body {
 .place {
   color: #a82c4b; /* Elegant rose-maroon */
   font-weight: 900;
-  text-decoration: underline wavy #a82c4b;
-  text-underline-offset: 8px;
   font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  display: inline-block;
 }
 
-.place::after {
-  content: ' 📍';
-  font-size: 1.2em;
-  vertical-align: middle;
+.place::before {
+  content: '📍';
+  font-size: 1.1em;
   transition: transform 0.3s ease, color 0.3s ease;
+  position: relative;
+  top: -1px;
 }
 
 .place:hover {
-  color: #c44f6f; /* Softer vibrant rose on hover */
-  text-decoration-color: #c44f6f;
-  transform: scale(1.06);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+  color: #c44f6f;
+  transform: scale(1.05);
+  text-shadow: 0 0 3px rgba(200, 50, 80, 0.2);
 }
 
-.place:hover::after {
-  transform: scale(1.25) rotate(-8deg);
+.place:hover::before {
+  transform: scale(1.2) rotate(-10deg);
   color: #f85c88;
 }
-
-
 
 .footer {
   color: #564861;
