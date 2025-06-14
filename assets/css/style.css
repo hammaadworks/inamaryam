@@ -656,6 +656,7 @@ a {
   align-items: center;
   justify-content: space-between;
   border-radius: 20px;
+  display: none;
 }
 
 #revamp-static-banner p {

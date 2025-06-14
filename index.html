@@ -176,8 +176,11 @@
         e.preventDefault();
         deferredPrompt = e;
 
+        // Show the banner and the button when the A2HS prompt is available
+        document.getElementById("revamp-static-banner").style.display = "flex"; // Make sure your CSS for banner also has display: none; initially
+        document.getElementById("a2hs-button").style.display = "inline-block";
+
         const btn = document.getElementById("a2hs-button");
-        btn.style.display = "inline-block";
 
         btn.addEventListener("click", () => {
           deferredPrompt.prompt();
@@ -188,16 +191,26 @@
               console.log("❌ A2HS dismissed");
             }
             deferredPrompt = null;
-            btn.disabled = true;
+            // Optionally hide the banner after prompt, whether accepted or dismissed
+            document.getElementById("revamp-static-banner").style.display =
+              "none";
           });
         });
       });
 
-      // Hide button if A2HS not available
+      // Hide banner if A2HS not available (or after install/dismiss)
       window.addEventListener("load", () => {
-        if (!("serviceWorker" in navigator)) {
-          document.getElementById("a2hs-button").style.display = "none";
+        if (!deferredPrompt) {
+          // Check if deferredPrompt was never set
+          document.getElementById("revamp-static-banner").style.display =
+            "none";
         }
+      });
+
+      // Optional: If you want to hide the banner *permanently* once the app is installed
+      window.addEventListener("appinstalled", () => {
+        document.getElementById("revamp-static-banner").style.display = "none";
+        console.log("PWA installed successfully!");
       });
     </script>
   </body>
