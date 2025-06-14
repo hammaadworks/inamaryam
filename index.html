@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="manifest" href="/manifest.json" />
     <link rel="icon" href="assets/favicon_io/favicon.ico" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta
@@ -50,7 +51,7 @@
         animation: pulse-attention 2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
       }
     </style>
-    </head>
+  </head>
   <body>
     <div class="sakura-falling"></div>
     <img
@@ -136,15 +137,68 @@
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
       "
     >
-      <i id="speaker_icon" class="fa fa-volume-up" style="color: white; font-size: 24px;"></i>
+      <i
+        id="speaker_icon"
+        class="fa fa-volume-up"
+        style="color: white; font-size: 24px"
+      ></i>
     </div>
     <p class="happiness">
       Can't wait to celebrate this blessed moment of our family with you! <br />
-      Just a ping away for any queries: <br /> +91 8310428923
+      Just a ping away for any queries: <br />
+      +91 8310428923
     </p>
     <p class="dance-med">Join us in our happiness!</p>
+    <div id="revamp-static-banner">
+      <p>
+        🎉 Alhamdulillah! This Monday we are launching the 10x celebrations
+        website, In Sha Allah, bringing more love and joy to this blessed union.
+        Add this site to home to stay tuned! 💖
+      </p>
+      <button id="a2hs-button">Add to Home</button>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/timoschaefer/jQuery-Sakura/jquery-sakura.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("service-worker.js")
+          .then(() => console.log("✅ Service Worker registered!"))
+          .catch((err) => console.error("Service Worker failed:", err));
+      }
+    </script>
+    <script>
+      let deferredPrompt;
+
+      window.addEventListener("beforeinstallprompt", (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        const btn = document.getElementById("a2hs-button");
+        btn.style.display = "inline-block";
+
+        btn.addEventListener("click", () => {
+          deferredPrompt.prompt();
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === "accepted") {
+              console.log("✅ A2HS accepted");
+            } else {
+              console.log("❌ A2HS dismissed");
+            }
+            deferredPrompt = null;
+            btn.disabled = true;
+          });
+        });
+      });
+
+      // Hide button if A2HS not available
+      window.addEventListener("load", () => {
+        if (!("serviceWorker" in navigator)) {
+          document.getElementById("a2hs-button").style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
